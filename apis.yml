@@ -1,0 +1,33 @@
+aid: spin-ai
+name: Spin.AI
+description: >-
+  Spin.AI is a SaaS security platform providing data protection, ransomware detection, and compliance management for cloud applications.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - SaaS Security
+  - Data Protection
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/spin-ai/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: spin-ai:spin-ai
+    name: Spin.AI
+    description: >-
+      Spin.AI is a SaaS security platform providing data protection, ransomware detection, and compliance management for cloud applications.
+    humanURL: https://www.spin.ai
+    tags:
+      - SaaS Security
+    properties:
+      - type: Documentation
+        url: https://www.spin.ai/resources
+common:
+  - type: Website
+    url: https://www.spin.ai
+  - type: Documentation
+    url: https://www.spin.ai/resources
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

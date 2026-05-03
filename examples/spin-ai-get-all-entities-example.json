@@ -1,0 +1,60 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://apg-1.spin.ai/api/v1/integration/backup/entities/all?platform=google_workspace",
+    "headers": {
+      "Authorization": "SPIN_API X-APP-ID=your-app-id,X-API-KEY=your-api-key",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "entities": [
+        {
+          "id": "ent_001",
+          "external_id": "118234567890123456789",
+          "type": "user",
+          "platform": "google_workspace",
+          "name": "Alice Johnson",
+          "email": "alice.johnson@acme.com",
+          "status": "ACTIVE",
+          "backup_enabled": true,
+          "last_backup_at": "2026-05-02T06:00:00Z",
+          "created_at": "2025-01-15T12:00:00Z",
+          "updated_at": "2026-05-02T06:00:00Z"
+        },
+        {
+          "id": "ent_002",
+          "external_id": "987654321098765432100",
+          "type": "shared_drive",
+          "platform": "google_workspace",
+          "name": "Marketing Team Drive",
+          "email": null,
+          "status": "ACTIVE",
+          "backup_enabled": true,
+          "last_backup_at": "2026-05-02T06:30:00Z",
+          "created_at": "2025-02-01T09:00:00Z",
+          "updated_at": "2026-05-02T06:30:00Z"
+        },
+        {
+          "id": "ent_003",
+          "external_id": "456789012345678901230",
+          "type": "user",
+          "platform": "google_workspace",
+          "name": "Bob Smith",
+          "email": "bob.smith@acme.com",
+          "status": "ARCHIVED",
+          "backup_enabled": false,
+          "last_backup_at": "2026-03-15T06:00:00Z",
+          "created_at": "2025-01-15T12:00:00Z",
+          "updated_at": "2026-03-20T14:00:00Z"
+        }
+      ],
+      "total": 3
+    }
+  }
+}

@@ -1,0 +1,102 @@
+vocabulary:
+  name: Spin.AI Vocabulary
+  description: >-
+    Domain vocabulary for the Spin.AI SpinOne SaaS security and data protection platform
+    covering backup management, entity lifecycle, ransomware protection, and compliance terminology.
+  version: "1.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+  tags:
+    - SaaS Security
+    - Data Protection
+    - Backup
+
+terms:
+  - term: Entity
+    definition: >-
+      A user, group, shared drive, team drive, site, or channel within a SaaS
+      platform (Google Workspace, Microsoft 365, Salesforce, Slack) that is managed
+      by the SpinOne backup and security platform.
+    synonyms: [Resource, Asset, Account]
+    related: [Backup, Platform, Status]
+
+  - term: SpinOne
+    definition: >-
+      The Spin.AI SaaS data protection platform providing backup, ransomware detection,
+      DLP, and compliance management for cloud applications including Google Workspace
+      and Microsoft 365.
+    synonyms: [Spin.AI Platform, SpinOne Platform]
+    related: [Backup, SaaS Security, Data Protection]
+
+  - term: Backup Status
+    definition: >-
+      The current protection state of an entity in SpinOne. ACTIVE means backup
+      is running, ARCHIVED means the entity is excluded from backup but data is
+      retained, and DISABLED means backup is off and retention has ceased.
+    values: [ACTIVE, ARCHIVED, DISABLED]
+    related: [Entity, Backup, Retention]
+
+  - term: ACTIVE
+    definition: >-
+      Backup status indicating the entity is actively included in scheduled backups
+      and data is being protected and retained.
+    related: [Backup Status, Entity]
+
+  - term: ARCHIVED
+    definition: >-
+      Backup status indicating the entity has been removed from active backup
+      schedules but historical backup data is still retained. Used for offboarded
+      users or deprecated resources.
+    related: [Backup Status, Retention]
+
+  - term: DISABLED
+    definition: >-
+      Backup status indicating backup has been turned off for the entity and data
+      retention has ceased. Historical data may be removed.
+    related: [Backup Status, Entity]
+
+  - term: SaaS Security
+    definition: >-
+      Security practices and tools focused on protecting data and managing risk
+      within Software-as-a-Service applications such as Google Workspace,
+      Microsoft 365, Salesforce, and Slack.
+    synonyms: [Cloud App Security, SaaS Protection]
+    related: [Data Protection, DLP, Ransomware]
+
+  - term: Ransomware Detection
+    definition: >-
+      Automated detection of ransomware attacks within SaaS environments by
+      identifying abnormal encryption patterns, bulk file modifications, or
+      suspicious permission changes in connected cloud applications.
+    related: [SaaS Security, Backup, Recovery]
+
+  - term: DLP
+    definition: >-
+      Data Loss Prevention — policies and controls to detect and prevent
+      unauthorized sharing or exfiltration of sensitive data within SaaS
+      applications.
+    synonyms: [Data Loss Prevention]
+    related: [SaaS Security, Compliance, Policy]
+
+  - term: Public API
+    definition: >-
+      The SpinOne REST API endpoint that clients can use to integrate backup
+      management into custom workflows and enterprise tools. Requires an
+      App ID and API Key for authentication.
+    synonyms: [Integration API, REST API]
+    related: [API Key, App ID, Integration]
+
+  - term: App ID
+    definition: >-
+      The application identifier (X-APP-ID) generated in the SpinOne admin
+      console used alongside an API Key to authenticate requests to the
+      SpinOne Public API.
+    synonyms: [Client ID, Application ID]
+    related: [API Key, Public API, Authentication]
+
+  - term: Scope
+    definition: >-
+      The permission level granted to an API integration. Entity.Read.All
+      permits read-only access while Entity.ReadWrite.All permits status updates.
+    values: [Entity.Read.All, Entity.ReadWrite.All]
+    related: [Public API, Authentication, Permissions]

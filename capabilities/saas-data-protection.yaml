@@ -1,0 +1,127 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Spin.AI SaaS Data Protection"
+  description: >-
+    Workflow capability for managing SaaS data protection and backup entity lifecycle
+    using the Spin.AI SpinOne platform. Enables IT administrators and security teams
+    to audit backup coverage, identify unprotected entities, and manage backup status
+    across Google Workspace, Microsoft 365, Salesforce, and Slack environments.
+  tags:
+    - Spin AI
+    - SaaS Security
+    - Data Protection
+    - Backup
+    - Compliance
+    - Google Workspace
+    - Microsoft 365
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SPIN_AI_APP_ID: SPIN_AI_APP_ID
+      SPIN_AI_API_KEY: SPIN_AI_API_KEY
+
+capability:
+  consumes:
+    - import: spin-ai
+      location: ./shared/spin-ai.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: spin-ai-data-protection-api
+      description: "Unified REST API for Spin.AI SaaS data protection workflows."
+      resources:
+        - path: /v1/entities
+          name: entities
+          description: "Backup entity management"
+          operations:
+            - method: GET
+              name: get-all-entities
+              description: "Retrieve all backup entities"
+              call: "spin-ai.get-all-entities"
+              with:
+                platform: "rest.platform"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/entities/filter
+          name: entity-filter
+          description: "Filtered entity retrieval"
+          operations:
+            - method: POST
+              name: filter-entities
+              description: "Filter entities by type, status, and platform"
+              call: "spin-ai.filter-entities"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/entities/status
+          name: entity-status
+          description: "Entity backup status management"
+          operations:
+            - method: POST
+              name: update-entity-status
+              description: "Update backup status for entities"
+              call: "spin-ai.update-entity-status"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: spin-ai-data-protection-mcp
+      transport: http
+      description: "MCP server for AI-assisted SaaS data protection management."
+      tools:
+        - name: get-all-backup-entities
+          description: "Retrieve all users, groups, and drives managed by SpinOne backup. Filter by platform (google_workspace, microsoft_365, salesforce, slack)."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "spin-ai.get-all-entities"
+          with:
+            platform: "tools.platform"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: filter-backup-entities
+          description: "Search and filter backup entities by type (user/group/drive), status (ACTIVE/ARCHIVED/DISABLED), and platform. Use for auditing backup coverage gaps."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "spin-ai.filter-entities"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: activate-entity-backup
+          description: "Enable backup for one or more entities by setting their status to ACTIVE."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "spin-ai.update-entity-status"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: archive-entity-backup
+          description: "Archive one or more entities in SpinOne — backup stops but existing data is retained."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "spin-ai.update-entity-status"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: disable-entity-backup
+          description: "Disable backup for one or more entities — backup stops and data retention ceases."
+          hints:
+            readOnly: false
+            idempotent: true
+            destructive: true
+          call: "spin-ai.update-entity-status"
+          outputParameters:
+            - type: object
+              mapping: "$."

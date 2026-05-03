@@ -1,0 +1,18 @@
+{
+  "title": "Spin.AI Entity Structure",
+  "description": "JSON Structure document describing the Spin.AI SpinOne backup entity data model.",
+  "type": "object",
+  "fields": [
+    { "name": "id", "type": "string", "required": true, "description": "Unique SpinOne entity ID" },
+    { "name": "external_id", "type": "string", "required": false, "description": "Platform-native identifier" },
+    { "name": "type", "type": "enum[user,group,shared_drive,team_drive,site,channel]", "required": true, "description": "Entity type" },
+    { "name": "platform", "type": "enum[google_workspace,microsoft_365,salesforce,slack]", "required": true, "description": "SaaS platform" },
+    { "name": "name", "type": "string", "required": false, "description": "Display name" },
+    { "name": "email", "type": "email", "required": false, "description": "Email address (user entities)" },
+    { "name": "status", "type": "enum[ACTIVE,ARCHIVED,DISABLED]", "required": true, "description": "Backup status" },
+    { "name": "backup_enabled", "type": "boolean", "required": false, "description": "Whether backup is active" },
+    { "name": "last_backup_at", "type": "datetime", "required": false, "description": "Last successful backup timestamp" },
+    { "name": "created_at", "type": "datetime", "required": false, "description": "Creation timestamp" },
+    { "name": "updated_at", "type": "datetime", "required": false, "description": "Last update timestamp" }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://apg-1.spin.ai/api/v1/integration/backup/entity/status",
+    "headers": {
+      "Authorization": "SPIN_API X-APP-ID=your-app-id,X-API-KEY=your-api-key",
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "entity_ids": ["ent_003", "ent_004"],
+      "status": "ACTIVE",
+      "reason": "Re-activating backup for returning employees"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "updated": 2,
+      "failed": 0,
+      "errors": []
+    }
+  }
+}

@@ -1,0 +1,302 @@
+openapi: 3.1.0
+info:
+  title: Spin.AI SpinOne API
+  description: >-
+    The Spin.AI SpinOne Public API provides programmatic access to the SpinOne
+    SaaS data protection and security platform. The API enables customers to
+    integrate Spin.AI backup, ransomware detection, and compliance management
+    capabilities into custom workflows and enterprise tools. It supports managing
+    entities (users, groups, drives) across Google Workspace, Microsoft 365, and
+    Salesforce, with operations for reading entity status, filtering backup targets,
+    and updating entity backup configurations.
+  version: '1.0'
+  contact:
+    name: Spin.AI Support
+    url: https://spin.ai/support/
+  termsOfService: https://spin.ai/terms-of-service/
+externalDocs:
+  description: Spin.AI Knowledge Base and API Documentation
+  url: https://spin.ai/help/gworkspace-administration/setting-up-public-api
+servers:
+  - url: https://apg-1.spin.ai
+    description: AWS Region API Gateway
+  - url: https://apg-2.spin.ai
+    description: GCP Region API Gateway
+  - url: https://apg-3.spin.ai
+    description: Azure Region API Gateway
+tags:
+  - name: Entities
+    description: >-
+      Entity management operations for reading, filtering, and updating the
+      backup status of Google Workspace, Microsoft 365, and Salesforce entities
+      such as users, groups, and shared drives
+paths:
+  /api/v1/integration/backup/entities/all:
+    get:
+      operationId: getAllEntities
+      summary: Get All Backup Entities
+      description: >-
+        Retrieves all entities (users, groups, shared drives) that are managed
+        by the SpinOne backup platform. Returns the complete list of entities
+        for the authenticated organization with their current backup status,
+        entity type, and configuration details.
+      tags:
+        - Entities
+      parameters:
+        - name: platform
+          in: query
+          description: Filter entities by SaaS platform
+          schema:
+            type: string
+            enum: [google_workspace, microsoft_365, salesforce, slack]
+      responses:
+        '200':
+          description: All entities retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entity'
+                  total:
+                    type: integer
+                    description: Total number of entities
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Insufficient permissions for requested operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v1/integration/backup/entities/filter:
+    post:
+      operationId: filterEntities
+      summary: Filter Backup Entities
+      description: >-
+        Retrieves a filtered subset of entities managed by the SpinOne backup
+        platform. Filtering criteria can include entity type, status, platform,
+        and other attributes. Useful for querying specific subsets of users or
+        groups for reporting or workflow integration.
+      tags:
+        - Entities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityFilter'
+      responses:
+        '200':
+          description: Filtered entities retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Entity'
+                  total:
+                    type: integer
+                    description: Total number of matching entities
+        '400':
+          description: Invalid filter criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v1/integration/backup/entity/status:
+    post:
+      operationId: updateEntityStatus
+      summary: Update Entity Backup Status
+      description: >-
+        Updates the backup status of one or more entities in the SpinOne platform.
+        Allows changing entity status to ACTIVE (include in backup), ARCHIVED
+        (exclude from backup but retain data), or DISABLED (exclude from backup
+        and stop data retention). This operation requires the
+        Entity.ReadWrite.All scope.
+      tags:
+        - Entities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityStatusUpdate'
+      responses:
+        '200':
+          description: Entity status updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updated:
+                    type: integer
+                    description: Number of entities successfully updated
+                  failed:
+                    type: integer
+                    description: Number of entities that failed to update
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Error'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication credentials missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Insufficient permissions — requires Entity.ReadWrite.All scope
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    spinApiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Spin.AI API authentication using the format:
+        SPIN_API X-APP-ID={appIdValue},X-API-KEY={apiKeyValue}
+        Both the Application ID and API Key are generated in the SpinOne
+        administration console under Settings > Integrations > Public API.
+  schemas:
+    Entity:
+      type: object
+      description: A SpinOne backup entity representing a user, group, or shared drive
+      properties:
+        id:
+          type: string
+          description: Unique entity identifier within SpinOne
+        external_id:
+          type: string
+          description: >-
+            External identifier from the SaaS platform (e.g., Google Workspace
+            user ID, Microsoft 365 user principal name)
+        type:
+          type: string
+          description: Entity type
+          enum: [user, group, shared_drive, team_drive, site, channel]
+        platform:
+          type: string
+          description: SaaS platform the entity belongs to
+          enum: [google_workspace, microsoft_365, salesforce, slack]
+        name:
+          type: string
+          description: Entity display name
+        email:
+          type: string
+          format: email
+          description: Entity email address (for user entities)
+        status:
+          type: string
+          description: Current backup status of the entity
+          enum: [ACTIVE, ARCHIVED, DISABLED]
+        backup_enabled:
+          type: boolean
+          description: Whether backup is currently active for this entity
+        last_backup_at:
+          type: string
+          format: date-time
+          description: Timestamp of the most recent successful backup
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the entity was added to SpinOne
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when entity configuration was last updated
+    EntityFilter:
+      type: object
+      description: Filter criteria for querying entities
+      properties:
+        types:
+          type: array
+          items:
+            type: string
+            enum: [user, group, shared_drive, team_drive, site, channel]
+          description: Filter by entity types
+        statuses:
+          type: array
+          items:
+            type: string
+            enum: [ACTIVE, ARCHIVED, DISABLED]
+          description: Filter by backup statuses
+        platforms:
+          type: array
+          items:
+            type: string
+            enum: [google_workspace, microsoft_365, salesforce, slack]
+          description: Filter by SaaS platforms
+        search:
+          type: string
+          description: Text search across entity name and email fields
+        page:
+          type: integer
+          description: Page number for paginated results
+          default: 1
+        page_size:
+          type: integer
+          description: Number of results per page
+          default: 100
+          maximum: 1000
+    EntityStatusUpdate:
+      type: object
+      required:
+        - entity_ids
+        - status
+      properties:
+        entity_ids:
+          type: array
+          items:
+            type: string
+          description: List of entity IDs to update
+          minItems: 1
+        status:
+          type: string
+          description: New backup status to apply to all specified entities
+          enum: [ACTIVE, ARCHIVED, DISABLED]
+        reason:
+          type: string
+          description: Optional reason for the status change (for audit logging)
+    Error:
+      type: object
+      description: API error response
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code
+        message:
+          type: string
+          description: Human-readable error description
+        entity_id:
+          type: string
+          description: Entity ID associated with the error (for batch operations)
+security:
+  - spinApiKey: []

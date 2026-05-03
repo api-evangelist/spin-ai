@@ -1,0 +1,75 @@
+extends: spectral:oas
+rules:
+  spin-ai-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    message: Operation summary "{{value}}" should be in Title Case
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*([ ][A-Z][a-zA-Z0-9]*)*$"
+
+  spin-ai-tags-title-case:
+    description: All tags must use Title Case
+    message: Tag "{{value}}" should be in Title Case
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*([ ][A-Z][a-zA-Z0-9]*)*$"
+
+  spin-ai-operation-id:
+    description: All operations must have an operationId
+    message: Operation must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  spin-ai-operation-tags:
+    description: All operations must have at least one tag
+    message: Operation must have at least one tag
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  spin-ai-operation-description:
+    description: All operations must have a description
+    message: Operation should have a description
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+
+  spin-ai-path-versioned:
+    description: All API paths should be versioned with /api/v1/ prefix
+    message: Path should be versioned (e.g. /api/v1/)
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/v[0-9]+"
+
+  spin-ai-security-required:
+    description: All operations must require authentication
+    message: Operation must define security requirements (Spin.AI requires SPIN_API key)
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: security
+      function: defined
+
+  spin-ai-request-body-schema:
+    description: POST and PUT operations must have a request body schema
+    message: POST/PUT operation should have a request body with schema
+    severity: warn
+    given: "$.paths[*][post,put].requestBody"
+    then:
+      function: truthy

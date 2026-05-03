@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "spinai": "https://spin.ai/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Entity": "spinai:Entity",
+    "BackupEntity": "spinai:BackupEntity",
+
+    "id": "@id",
+    "external_id": {
+      "@id": "spinai:externalId",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "spinai:entityType",
+      "@type": "xsd:string"
+    },
+    "platform": {
+      "@id": "spinai:platform",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "spinai:backupStatus",
+      "@type": "xsd:string"
+    },
+    "backup_enabled": {
+      "@id": "spinai:backupEnabled",
+      "@type": "xsd:boolean"
+    },
+    "last_backup_at": {
+      "@id": "spinai:lastBackupAt",
+      "@type": "xsd:dateTime"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

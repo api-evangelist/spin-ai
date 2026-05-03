@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/spin-ai/json-schema/spin-ai-entity-schema.json",
+  "title": "Spin.AI Backup Entity",
+  "description": "JSON Schema for a SpinOne backup entity representing a user, group, or shared drive managed by the Spin.AI data protection platform.",
+  "type": "object",
+  "required": ["id", "type", "platform", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique entity identifier within SpinOne"
+    },
+    "external_id": {
+      "type": "string",
+      "description": "External identifier from the SaaS platform (e.g., Google Workspace user ID)"
+    },
+    "type": {
+      "type": "string",
+      "description": "Entity type",
+      "enum": ["user", "group", "shared_drive", "team_drive", "site", "channel"]
+    },
+    "platform": {
+      "type": "string",
+      "description": "SaaS platform the entity belongs to",
+      "enum": ["google_workspace", "microsoft_365", "salesforce", "slack"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Entity display name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Entity email address (for user entities)"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current backup status",
+      "enum": ["ACTIVE", "ARCHIVED", "DISABLED"]
+    },
+    "backup_enabled": {
+      "type": "boolean",
+      "description": "Whether backup is currently active"
+    },
+    "last_backup_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of most recent successful backup"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when entity was added to SpinOne"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when entity configuration was last updated"
+    }
+  }
+}

@@ -60,6 +60,9 @@ common:
   url: https://spin.ai/privacy-policy/
 - type: Blog
   url: https://spin.ai/blog/
+- url: https://spin.ai/blog/feed/
+  type: BlogRSS
+  description: Discovered RSS/Atom feed for https://spin.ai/blog/
 - type: LinkedIn
   url: https://www.linkedin.com/company/spin-ai/
 - type: OpenAPI

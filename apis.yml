@@ -73,6 +73,8 @@ common:
   url: vocabulary/spin-ai-vocabulary.yml
 - type: NaftikoCapabilities
   url: capabilities/saas-data-protection.yaml
+- type: LLMsTxt
+  url: https://spin.ai/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

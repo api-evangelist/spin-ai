@@ -1,6 +1,15 @@
 {
   "repo": "spin-ai",
-  "feeds": [],
-  "fetched": "2026-05-17T20:48:52Z",
+  "feeds": [
+    {
+      "source": "https://spin.ai/privacy-policy/",
+      "error": "URLError"
+    },
+    {
+      "source": "https://spin.ai/blog/feed/",
+      "error": "URLError"
+    }
+  ],
+  "fetched": "2026-06-01T23:35:02Z",
   "post_count": 0
 }

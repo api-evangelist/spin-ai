@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spin.AI SpinOne API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Backup Entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://apg-1.spin.ai/api/v1/integration/backup/entities/all",
+            "params": [
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "Filter entities by SaaS platform"
+              }
+            ]
+          },
+          "docs": "Retrieves all entities (users, groups, shared drives) that are managed by the SpinOne backup platform. Returns the complete list of entities for the authenticated organization with their current backup status, entity type, and configuration details."
+        },
+        {
+          "info": {
+            "name": "Filter Backup Entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apg-1.spin.ai/api/v1/integration/backup/entities/filter",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a filtered subset of entities managed by the SpinOne backup platform. Filtering criteria can include entity type, status, platform, and other attributes. Useful for querying specific subsets of users or groups for reporting or workflow integration."
+        },
+        {
+          "info": {
+            "name": "Update Entity Backup Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://apg-1.spin.ai/api/v1/integration/backup/entity/status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the backup status of one or more entities in the SpinOne platform. Allows changing entity status to ACTIVE (include in backup), ARCHIVED (exclude from backup but retain data), or DISABLED (exclude from backup and stop data retention). This operation requires the Entity.ReadWrite.All scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

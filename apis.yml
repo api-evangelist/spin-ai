@@ -5,7 +5,7 @@ description: >-
   cloud applications including Google Workspace, Microsoft 365, Salesforce, and Slack. The SpinOne Public API enables
   programmatic integration for managing backup entity lifecycle across enterprise SaaS environments.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Backup
   - Compliance

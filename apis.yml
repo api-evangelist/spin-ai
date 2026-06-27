@@ -69,7 +69,7 @@ common:
     url: rules/spin-ai-rules.yml
   - type: Vocabulary
     url: vocabulary/spin-ai-vocabulary.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://spin.ai/llms.txt
 maintainers:
   - FN: Kin Lane

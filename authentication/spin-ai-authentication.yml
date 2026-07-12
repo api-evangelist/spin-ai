@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/spin-ai-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: spinApiKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Spin.AI API authentication using the format: SPIN_API X-APP-ID={appIdValue},X-API-KEY={apiKeyValue}
+    Both the Application ID and API Key are generated in the SpinOne administration console
+    under Settings > Integrations > Public API.'
+  sources:
+  - openapi/spin-ai-openapi.yml

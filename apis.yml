@@ -42,6 +42,14 @@ apis:
       - type: SpectralRules
         url: rules/spin-ai-rules.yml
 common:
+  - type: TrustCenter
+    url: security/spin-ai-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/spin-ai-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/spin-ai-domain-security.yml
+  - type: Authentication
+    url: authentication/spin-ai-authentication.yml
   - type: Website
     url: https://www.spin.ai
   - type: Documentation

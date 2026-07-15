@@ -42,6 +42,8 @@ apis:
       - type: SpectralRules
         url: rules/spin-ai-rules.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/spin-ai-agentic-access.yml
   - type: TrustCenter
     url: security/spin-ai-trust-center.yml
   - type: VulnerabilityDisclosure

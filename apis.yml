@@ -5,7 +5,20 @@ description: >-
   cloud applications including Google Workspace, Microsoft 365, Salesforce, and Slack. The SpinOne Public API enables
   programmatic integration for managing backup entity lifecycle across enterprise SaaS environments.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/spin-ai.png
 tags:
   - Backup
   - Compliance
@@ -17,31 +30,26 @@ created: '2026-03-27'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: spin-ai:spin-ai-spinone-api
-    name: Spin.AI SpinOne API
-    description: >-
-      The SpinOne Public API provides programmatic access to SaaS data protection management. It enables reading,
-      filtering, and updating the backup status of entities (users, groups, shared drives) across Google Workspace,
-      Microsoft 365, Salesforce, and Slack. Authentication uses a custom SPIN_API key scheme combining an App ID and API
-      Key from the SpinOne admin console.
-    humanURL: https://spin.ai/help/gworkspace-administration/setting-up-public-api
-    tags:
-      - Backup
-      - Data Protection
-      - Entities
-      - Google Workspace
-      - Microsoft 365
-      - SaaS Security
-    properties:
-      - type: Documentation
-        url: https://spin.ai/help/gworkspace-administration/setting-up-public-api
-      - type: SwaggerUI
-        url: https://apg-1.spin.ai/swagger-ui/
-      - type: OpenAPI
-        url: openapi/spin-ai-openapi.yml
-      - type: SpectralRules
-        url: rules/spin-ai-rules.yml
+- aid: spin-ai:spin-ai-entities-api
+  name: Spin.AI Entities API
+  description: >-
+    Entity management operations for reading, filtering, and updating the backup status of Google Workspace,
+    Microsoft 365, and Salesforce entities such as users, groups, and shared drives
+  humanURL: https://spin.ai/help/gworkspace-administration/setting-up-public-api
+  tags:
+  - Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/spin-ai-entities-api-openapi.yml
+  - type: Documentation
+    url: https://spin.ai/help/gworkspace-administration/setting-up-public-api
+  - type: SwaggerUI
+    url: https://apg-1.spin.ai/swagger-ui/
+  - type: SpectralRules
+    url: rules/spin-ai-rules.yml
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/spinai/overview
   - type: AgenticAccess
     url: agentic-access/spin-ai-agentic-access.yml
   - type: TrustCenter

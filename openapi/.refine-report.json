@@ -1,0 +1,14 @@
+{
+  "provider": "spin-ai",
+  "sources": [
+    "spin-ai-entities-api-openapi.yml"
+  ],
+  "outputs": [
+    "spin-ai-entities-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

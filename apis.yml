@@ -82,7 +82,7 @@ common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/spin-ai/
   - type: OpenAPI
-    url: openapi/spin-ai-openapi.yml
+    url: openapi/_original/spin-ai-openapi.yml
   - type: SpectralRules
     url: rules/spin-ai-rules.yml
   - type: Vocabulary

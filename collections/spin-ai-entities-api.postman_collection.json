@@ -1,0 +1,753 @@
+{
+  "item": [
+    {
+      "id": "0da7d0e8-285d-45a5-a6e0-b50657d331a3",
+      "name": "Entities",
+      "description": {
+        "content": "Entity management operations for reading, filtering, and updating the backup status of Google Workspace, Microsoft 365, and Salesforce entities such as users, groups, and shared drives",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72314703-2bfe-4b25-a4d2-6c6b0898b046",
+          "name": "Get All Backup Entities",
+          "request": {
+            "name": "Get All Backup Entities",
+            "description": {
+              "content": "Retrieves all entities (users, groups, shared drives) that are managed by the SpinOne backup platform. Returns the complete list of entities for the authenticated organization with their current backup status, entity type, and configuration details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "integration",
+                "backup",
+                "entities",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Filter entities by SaaS platform"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c47b826-476f-4f32-abec-af13f779f51c",
+              "name": "All entities retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entities",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entities\": [\n    {\n      \"id\": \"string\",\n      \"external_id\": \"string\",\n      \"type\": \"site\",\n      \"platform\": \"microsoft_365\",\n      \"name\": \"string\",\n      \"email\": \"2eh@FwPYLrLSqwRAUQjXG.cpre\",\n      \"status\": \"DISABLED\",\n      \"backup_enabled\": false,\n      \"last_backup_at\": \"1958-06-19T09:40:59.296Z\",\n      \"created_at\": \"2018-01-20T22:02:40.951Z\",\n      \"updated_at\": \"2005-12-04T16:49:18.869Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"external_id\": \"string\",\n      \"type\": \"user\",\n      \"platform\": \"google_workspace\",\n      \"name\": \"string\",\n      \"email\": \"GwUJ@IDEm.zazl\",\n      \"status\": \"ARCHIVED\",\n      \"backup_enabled\": true,\n      \"last_backup_at\": \"1981-04-16T15:02:06.511Z\",\n      \"created_at\": \"1993-10-06T13:27:00.400Z\",\n      \"updated_at\": \"1999-06-15T22:51:58.118Z\"\n    }\n  ],\n  \"total\": 5417\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42c93f80-3c80-4cef-a8f2-04a3524c98d5",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entities",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"entity_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9625b05d-69da-4c21-9aba-03dc82385955",
+              "name": "Insufficient permissions for requested operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entities",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"entity_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afcb87a8-51d4-4c97-8713-a2a35b2eb197",
+          "name": "Filter Backup Entities",
+          "request": {
+            "name": "Filter Backup Entities",
+            "description": {
+              "content": "Retrieves a filtered subset of entities managed by the SpinOne backup platform. Filtering criteria can include entity type, status, platform, and other attributes. Useful for querying specific subsets of users or groups for reporting or workflow integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "integration",
+                "backup",
+                "entities",
+                "filter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"platforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search\": \"<string>\",\n  \"page\": 1,\n  \"page_size\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0c90c013-be69-4ced-b675-daed0712c1bb",
+              "name": "Filtered entities retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entities",
+                    "filter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"platforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search\": \"<string>\",\n  \"page\": 1,\n  \"page_size\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entities\": [\n    {\n      \"id\": \"string\",\n      \"external_id\": \"string\",\n      \"type\": \"shared_drive\",\n      \"platform\": \"microsoft_365\",\n      \"name\": \"string\",\n      \"email\": \"T7TG-jcY9Z@Xhug.kyie\",\n      \"status\": \"ACTIVE\",\n      \"backup_enabled\": true,\n      \"last_backup_at\": \"1972-02-07T13:47:08.194Z\",\n      \"created_at\": \"1997-04-04T22:23:03.790Z\",\n      \"updated_at\": \"2026-04-04T06:52:53.226Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"external_id\": \"string\",\n      \"type\": \"site\",\n      \"platform\": \"salesforce\",\n      \"name\": \"string\",\n      \"email\": \"Iw0h4Dk@odHVLeIMRxIhyMRfUmplpyaWDQUCXlY.vdv\",\n      \"status\": \"ARCHIVED\",\n      \"backup_enabled\": true,\n      \"last_backup_at\": \"1978-11-04T05:38:38.521Z\",\n      \"created_at\": \"1980-05-18T02:55:05.068Z\",\n      \"updated_at\": \"1977-07-21T12:17:50.606Z\"\n    }\n  ],\n  \"total\": 2454\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "312eb1f8-3b35-4534-9d92-43ff77ef9069",
+              "name": "Invalid filter criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entities",
+                    "filter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"platforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search\": \"<string>\",\n  \"page\": 1,\n  \"page_size\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"entity_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01ca56f8-da9e-4ce1-a6ff-2aef3e1d03a3",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entities",
+                    "filter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"statuses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"platforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"search\": \"<string>\",\n  \"page\": 1,\n  \"page_size\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"entity_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5c52039-a5aa-48aa-b8fd-45505dec0b58",
+          "name": "Update Entity Backup Status",
+          "request": {
+            "name": "Update Entity Backup Status",
+            "description": {
+              "content": "Updates the backup status of one or more entities in the SpinOne platform. Allows changing entity status to ACTIVE (include in backup), ARCHIVED (exclude from backup but retain data), or DISABLED (exclude from backup and stop data retention). This operation requires the Entity.ReadWrite.All scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "integration",
+                "backup",
+                "entity",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entity_ids\": [\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f749d49a-813f-4432-b9a9-e7dc694bb376",
+              "name": "Entity status updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entity",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_ids\": [\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"updated\": 3246,\n  \"failed\": 458,\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"entity_id\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\",\n      \"entity_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cff2f20-73c6-4093-8055-38084e2b6ca3",
+              "name": "Invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entity",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_ids\": [\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"entity_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "150c8995-9cf9-4404-a954-0f68f014d59d",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entity",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_ids\": [\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"entity_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fed6f16-0e17-458c-8d4c-3886666dc9d8",
+              "name": "Insufficient permissions — requires Entity.ReadWrite.All scope",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "integration",
+                    "backup",
+                    "entity",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entity_ids\": [\n    \"<string>\"\n  ],\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"entity_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apg-1.spin.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "33af4da8-2372-40b2-815c-321496b4d9a6",
+    "name": "Spin.AI SpinOne Entities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Spin.AI SpinOne Public API provides programmatic access to the SpinOne SaaS data protection and security platform. The API enables customers to integrate Spin.AI backup, ransomware detection, and compliance management capabilities into custom workflows and enterprise tools. It supports managing entities (users, groups, drives) across Google Workspace, Microsoft 365, and Salesforce, with operations for reading entity status, filtering backup targets, and updating entity backup configurations.\n\nContact Support:\n Name: Spin.AI Support",
+      "type": "text/plain"
+    }
+  }
+}

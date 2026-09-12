@@ -2,18 +2,18 @@
   "repo": "spin-ai",
   "feeds": [
     {
+      "source": "https://spin.ai/blog/feed/",
+      "error": "HTTPError"
+    },
+    {
       "source": "https://spin.ai/privacy-policy/",
       "feed_url": "https://spin.ai/privacy-policy/",
       "title": "",
       "saved": 0,
       "method": "none"
-    },
-    {
-      "source": "https://spin.ai/blog/feed/",
-      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 0,
   "agent_pulled": "2026-07-04"
 }

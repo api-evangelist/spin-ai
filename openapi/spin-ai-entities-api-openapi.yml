@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Spin.AI SpinOne Entities API
   description: The Spin.AI SpinOne Public API provides programmatic access to the SpinOne SaaS data protection and security platform. The API enables customers to integrate Spin.AI backup, ransomware detection, and compliance management capabilities into custom workflows and enterprise tools. It supports managing entities (users, groups, drives) across Google Workspace, Microsoft 365, and Salesforce, with operations for reading entity status, filtering backup targets, and updating entity backup configurations.
@@ -156,53 +156,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    EntityFilter:
-      type: object
-      description: Filter criteria for querying entities
-      properties:
-        types:
-          type: array
-          items:
-            type: string
-            enum:
-            - user
-            - group
-            - shared_drive
-            - team_drive
-            - site
-            - channel
-          description: Filter by entity types
-        statuses:
-          type: array
-          items:
-            type: string
-            enum:
-            - ACTIVE
-            - ARCHIVED
-            - DISABLED
-          description: Filter by backup statuses
-        platforms:
-          type: array
-          items:
-            type: string
-            enum:
-            - google_workspace
-            - microsoft_365
-            - salesforce
-            - slack
-          description: Filter by SaaS platforms
-        search:
-          type: string
-          description: Text search across entity name and email fields
-        page:
-          type: integer
-          description: Page number for paginated results
-          default: 1
-        page_size:
-          type: integer
-          description: Number of results per page
-          default: 100
-          maximum: 1000
     EntityStatusUpdate:
       type: object
       required:
@@ -225,19 +178,6 @@ components:
         reason:
           type: string
           description: Optional reason for the status change (for audit logging)
-    Error:
-      type: object
-      description: API error response
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code
-        message:
-          type: string
-          description: Human-readable error description
-        entity_id:
-          type: string
-          description: Entity ID associated with the error (for batch operations)
     Entity:
       type: object
       description: A SpinOne backup entity representing a user, group, or shared drive
@@ -295,6 +235,66 @@ components:
           type: string
           format: date-time
           description: Timestamp when entity configuration was last updated
+    Error:
+      type: object
+      description: API error response
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code
+        message:
+          type: string
+          description: Human-readable error description
+        entity_id:
+          type: string
+          description: Entity ID associated with the error (for batch operations)
+    EntityFilter:
+      type: object
+      description: Filter criteria for querying entities
+      properties:
+        types:
+          type: array
+          items:
+            type: string
+            enum:
+            - user
+            - group
+            - shared_drive
+            - team_drive
+            - site
+            - channel
+          description: Filter by entity types
+        statuses:
+          type: array
+          items:
+            type: string
+            enum:
+            - ACTIVE
+            - ARCHIVED
+            - DISABLED
+          description: Filter by backup statuses
+        platforms:
+          type: array
+          items:
+            type: string
+            enum:
+            - google_workspace
+            - microsoft_365
+            - salesforce
+            - slack
+          description: Filter by SaaS platforms
+        search:
+          type: string
+          description: Text search across entity name and email fields
+        page:
+          type: integer
+          description: Page number for paginated results
+          default: 1
+        page_size:
+          type: integer
+          description: Number of results per page
+          default: 100
+          maximum: 1000
   securitySchemes:
     spinApiKey:
       type: apiKey

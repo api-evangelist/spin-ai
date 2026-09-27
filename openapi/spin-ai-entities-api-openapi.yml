@@ -178,6 +178,66 @@ components:
         reason:
           type: string
           description: Optional reason for the status change (for audit logging)
+    EntityFilter:
+      type: object
+      description: Filter criteria for querying entities
+      properties:
+        types:
+          type: array
+          items:
+            type: string
+            enum:
+            - user
+            - group
+            - shared_drive
+            - team_drive
+            - site
+            - channel
+          description: Filter by entity types
+        statuses:
+          type: array
+          items:
+            type: string
+            enum:
+            - ACTIVE
+            - ARCHIVED
+            - DISABLED
+          description: Filter by backup statuses
+        platforms:
+          type: array
+          items:
+            type: string
+            enum:
+            - google_workspace
+            - microsoft_365
+            - salesforce
+            - slack
+          description: Filter by SaaS platforms
+        search:
+          type: string
+          description: Text search across entity name and email fields
+        page:
+          type: integer
+          description: Page number for paginated results
+          default: 1
+        page_size:
+          type: integer
+          description: Number of results per page
+          default: 100
+          maximum: 1000
+    Error:
+      type: object
+      description: API error response
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code
+        message:
+          type: string
+          description: Human-readable error description
+        entity_id:
+          type: string
+          description: Entity ID associated with the error (for batch operations)
     Entity:
       type: object
       description: A SpinOne backup entity representing a user, group, or shared drive
@@ -235,66 +295,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when entity configuration was last updated
-    Error:
-      type: object
-      description: API error response
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code
-        message:
-          type: string
-          description: Human-readable error description
-        entity_id:
-          type: string
-          description: Entity ID associated with the error (for batch operations)
-    EntityFilter:
-      type: object
-      description: Filter criteria for querying entities
-      properties:
-        types:
-          type: array
-          items:
-            type: string
-            enum:
-            - user
-            - group
-            - shared_drive
-            - team_drive
-            - site
-            - channel
-          description: Filter by entity types
-        statuses:
-          type: array
-          items:
-            type: string
-            enum:
-            - ACTIVE
-            - ARCHIVED
-            - DISABLED
-          description: Filter by backup statuses
-        platforms:
-          type: array
-          items:
-            type: string
-            enum:
-            - google_workspace
-            - microsoft_365
-            - salesforce
-            - slack
-          description: Filter by SaaS platforms
-        search:
-          type: string
-          description: Text search across entity name and email fields
-        page:
-          type: integer
-          description: Page number for paginated results
-          default: 1
-        page_size:
-          type: integer
-          description: Number of results per page
-          default: 100
-          maximum: 1000
   securitySchemes:
     spinApiKey:
       type: apiKey

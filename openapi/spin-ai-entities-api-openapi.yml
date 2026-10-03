@@ -156,28 +156,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    EntityStatusUpdate:
-      type: object
-      required:
-      - entity_ids
-      - status
-      properties:
-        entity_ids:
-          type: array
-          items:
-            type: string
-          description: List of entity IDs to update
-          minItems: 1
-        status:
-          type: string
-          description: New backup status to apply to all specified entities
-          enum:
-          - ACTIVE
-          - ARCHIVED
-          - DISABLED
-        reason:
-          type: string
-          description: Optional reason for the status change (for audit logging)
     EntityFilter:
       type: object
       description: Filter criteria for querying entities
@@ -225,19 +203,28 @@ components:
           description: Number of results per page
           default: 100
           maximum: 1000
-    Error:
+    EntityStatusUpdate:
       type: object
-      description: API error response
+      required:
+      - entity_ids
+      - status
       properties:
-        code:
+        entity_ids:
+          type: array
+          items:
+            type: string
+          description: List of entity IDs to update
+          minItems: 1
+        status:
           type: string
-          description: Machine-readable error code
-        message:
+          description: New backup status to apply to all specified entities
+          enum:
+          - ACTIVE
+          - ARCHIVED
+          - DISABLED
+        reason:
           type: string
-          description: Human-readable error description
-        entity_id:
-          type: string
-          description: Entity ID associated with the error (for batch operations)
+          description: Optional reason for the status change (for audit logging)
     Entity:
       type: object
       description: A SpinOne backup entity representing a user, group, or shared drive
@@ -295,6 +282,19 @@ components:
           type: string
           format: date-time
           description: Timestamp when entity configuration was last updated
+    Error:
+      type: object
+      description: API error response
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code
+        message:
+          type: string
+          description: Human-readable error description
+        entity_id:
+          type: string
+          description: Entity ID associated with the error (for batch operations)
   securitySchemes:
     spinApiKey:
       type: apiKey

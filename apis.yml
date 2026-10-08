@@ -61,6 +61,12 @@ apis:
   - type: SpectralRules
     url: rules/spin-ai-rules.yml
 common:
+  - type: Plans
+    url: plans/spin-ai-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/spin-ai-rate-limits.yml
+  - type: FinOps
+    url: finops/spin-ai-finops.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/spinai/overview
   - type: AgenticAccess

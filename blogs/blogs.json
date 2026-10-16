@@ -2,6 +2,13 @@
   "repo": "spin-ai",
   "feeds": [
     {
+      "source": "https://spin.ai/blog/",
+      "feed_url": "https://spin.ai/blog/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://spin.ai/blog/feed/",
       "error": "HTTPError"
     },
@@ -13,7 +20,7 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 0,
   "agent_pulled": "2026-07-04"
 }

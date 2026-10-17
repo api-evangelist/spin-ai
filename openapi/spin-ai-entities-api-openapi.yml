@@ -156,6 +156,75 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    EntityFilter:
+      type: object
+      description: Filter criteria for querying entities
+      properties:
+        types:
+          type: array
+          items:
+            type: string
+            enum:
+            - user
+            - group
+            - shared_drive
+            - team_drive
+            - site
+            - channel
+          description: Filter by entity types
+        statuses:
+          type: array
+          items:
+            type: string
+            enum:
+            - ACTIVE
+            - ARCHIVED
+            - DISABLED
+          description: Filter by backup statuses
+        platforms:
+          type: array
+          items:
+            type: string
+            enum:
+            - google_workspace
+            - microsoft_365
+            - salesforce
+            - slack
+          description: Filter by SaaS platforms
+        search:
+          type: string
+          description: Text search across entity name and email fields
+        page:
+          type: integer
+          description: Page number for paginated results
+          default: 1
+        page_size:
+          type: integer
+          description: Number of results per page
+          default: 100
+          maximum: 1000
+    EntityStatusUpdate:
+      type: object
+      required:
+      - entity_ids
+      - status
+      properties:
+        entity_ids:
+          type: array
+          items:
+            type: string
+          description: List of entity IDs to update
+          minItems: 1
+        status:
+          type: string
+          description: New backup status to apply to all specified entities
+          enum:
+          - ACTIVE
+          - ARCHIVED
+          - DISABLED
+        reason:
+          type: string
+          description: Optional reason for the status change (for audit logging)
     Error:
       type: object
       description: API error response
@@ -226,75 +295,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when entity configuration was last updated
-    EntityStatusUpdate:
-      type: object
-      required:
-      - entity_ids
-      - status
-      properties:
-        entity_ids:
-          type: array
-          items:
-            type: string
-          description: List of entity IDs to update
-          minItems: 1
-        status:
-          type: string
-          description: New backup status to apply to all specified entities
-          enum:
-          - ACTIVE
-          - ARCHIVED
-          - DISABLED
-        reason:
-          type: string
-          description: Optional reason for the status change (for audit logging)
-    EntityFilter:
-      type: object
-      description: Filter criteria for querying entities
-      properties:
-        types:
-          type: array
-          items:
-            type: string
-            enum:
-            - user
-            - group
-            - shared_drive
-            - team_drive
-            - site
-            - channel
-          description: Filter by entity types
-        statuses:
-          type: array
-          items:
-            type: string
-            enum:
-            - ACTIVE
-            - ARCHIVED
-            - DISABLED
-          description: Filter by backup statuses
-        platforms:
-          type: array
-          items:
-            type: string
-            enum:
-            - google_workspace
-            - microsoft_365
-            - salesforce
-            - slack
-          description: Filter by SaaS platforms
-        search:
-          type: string
-          description: Text search across entity name and email fields
-        page:
-          type: integer
-          description: Page number for paginated results
-          default: 1
-        page_size:
-          type: integer
-          description: Number of results per page
-          default: 100
-          maximum: 1000
   securitySchemes:
     spinApiKey:
       type: apiKey
